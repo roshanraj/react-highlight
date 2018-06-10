@@ -1,5 +1,5 @@
 import emojiRegex from 'emoji-regex';
-import { Component } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import EmojiNode from './nodes/EmojiNode';
 import Node from './nodes/Node';
