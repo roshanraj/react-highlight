@@ -1,5 +1,5 @@
 import emojiRegex from 'emoji-regex';
-import React, { Component } from 'react';
+import React, { Component } from 'react'; // eslint-disable-line no-unused-vars
 import PropTypes from 'prop-types';
 import EmojiNode from './nodes/EmojiNode';
 import Node from './nodes/Node';
@@ -186,14 +186,21 @@ export default class Highlightable extends Component {
     return newText;
   }
 
+  changeText(event) {
+    console.log(event.target.innerText);
+    var text = event.target.innerText;
+    this.props.onTextChange(text);
+    // const newText = this.getRanges();
+    event.target.innerHtml = "";
+  }
   render() {
     const newText = this.getRanges();
-
     return (
       <div style={this.props.style}
-        
+        contentEditable={true}
         onMouseUp={this.onMouseUp.bind(this)}
-        onDoubleClick={this.onDoubleClick.bind(this)}>
+        onDoubleClick={this.onDoubleClick.bind(this)}
+        onInput={this.changeText.bind(this)}>
         {newText}
       </div>
     );
@@ -212,5 +219,6 @@ Highlightable.propTypes = {
   onTextHighlighted: PropTypes.func,
   highlightStyle: PropTypes.object,
   style: PropTypes.object,
-  rangeRenderer: PropTypes.func
+  rangeRenderer: PropTypes.func,
+  onTextChange: PropTypes.func
 };
